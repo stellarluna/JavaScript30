@@ -35,7 +35,7 @@
     let bornIn1500 = inventors.filter((element, index, inventors) => {
       return element.year.toString().slice(0, 2) === "15";
     });
-    console.log(bornIn1500);
+    console.table(bornIn1500);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
@@ -45,7 +45,7 @@
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
     let oldestToYoungest = inventors.sort((a, b) => a.year - b.year);
-    console.log(oldestToYoungest);
+    console.table(oldestToYoungest);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
@@ -61,10 +61,17 @@
       let bYears = b.passed - b.year;
       return aYears - bYears;
     });
-    console.log(sortedByYears);
+    console.table(sortedByYears);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    const category = document.querySelector(".mw-category");
+    const links = [...category.querySelectorAll("a")];
+    // using the spread operator to convert the NodeList into a JavaScript array
 
+    const de = links
+                .map(element => element.textContent)
+                .filter(element => element.includes("de"));
+    console.log(de);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
