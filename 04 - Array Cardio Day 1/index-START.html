@@ -31,15 +31,18 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    // inventors.map((element, index, inventors) => element.year.toString().slice(0, 2));
-    let bornIn1500 = inventors.filter((element, index, inventors) => {
-      return element.year.toString().slice(0, 2) === "15";
-    });
+    // let bornIn1500 = inventors.filter((element, index, inventors) => {
+    //   return element.year.toString().slice(0, 2) === "15";
+    // });
+    // Refactor:
+    let bornIn1500 = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
     console.table(bornIn1500);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    let firstLastName = inventors.map((element, index, inventors) => element.first + " " + element.last);
+    // let firstLastName = inventors.map((element, index, inventors) => element.first + " " + element.last);
+    // Refactor:
+    let firstLastName = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
     console.log(firstLastName);
 
     // Array.prototype.sort()
@@ -49,9 +52,13 @@
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
-    let totalYears = inventors.reduce((accumulator, current, index, inventors) => {
-      let years = current.passed - current.year;
-      return accumulator + years;
+    // let totalYears = inventors.reduce((accumulator, current, index, inventors) => {
+    //   let years = current.passed - current.year;
+    //   return accumulator + years;
+    // }, 0);
+    // Refactor:
+    let totalYears = inventors.reduce((accumulator, current) => {
+      return accumulator + (current.passed - current.year);
     }, 0);
     console.log(totalYears);
 
